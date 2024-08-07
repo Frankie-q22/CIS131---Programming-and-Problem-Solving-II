@@ -1,0 +1,19 @@
+file1 = open("Classaverage.txt","w")
+header = " Student Scores: \n"
+AllScores = int(input('Enter All Of The Class Grade Scores: '))
+StudentGrades = 0
+StudentTotal = 0
+StudentTotal = StudentTotal + AllScores
+StudentGrades += 1
+ClassAverage = StudentTotal/StudentGrades
+
+while AllScores != -1:
+    file1.writelines(f'{AllScores}\n')
+    AllScores = int(input('Enter All Of The Class Grade Score: '))
+    StudentTotal = StudentTotal + AllScores
+    while AllScores == -1:
+        StudentTotal = StudentTotal +1
+        StudentGrades -=1
+        print('Total Test Scores: ',StudentTotal)  
+        print('Total Of Students Graded: ',StudentGrades+1)
+        print('Class Average: ', ClassAverage)

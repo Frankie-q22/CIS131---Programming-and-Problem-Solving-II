@@ -1,0 +1,44 @@
+import shodan
+import json
+import ezgmail
+from twilio.rest import Client
+
+API_KEY = "your api"
+TWILIO_ACCOUNT_SID = "your twilio account sid"
+TWILIO_AUTH_TOKEN = "your authentication token"
+TWILIO_PHONE_NUMBER = "your twilio phone number"
+YOUR_PHONE_NUMBER = "your actual phone number"
+
+# Query Shodan for in-tank inventory in AZ
+api = shodan.Shodan(API_KEY)
+try:
+    result = api.search("'in-tank inventory' state:'AZ'")
+    result_json = json.loads(json.dumps(result))
+
+    # Send the report by email
+    report = ""
+    for info in result_json['matches']:
+        report += 'ISP: {}\n'.format(info['isp'])
+        report += '{}\n\n'.format(info['data'])
+    ezgmail.send('fquinteroiii@mail.pima.edu', 'Internet Gas Gauge in AZ report', report)
+
+    # Send a SMS message to your phone
+    message = "Internet Gas Gauge in AZ report delivered to email"
+    client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+    client.messages.create(
+        to=YOUR_PHONE_NUMBER,
+        from_=TWILIO_PHONE_NUMBER,
+        body=message)
+
+    # Check if there is an exposed gas gauge in Phoenix, AZ
+    for info in result_json['matches']:
+        if 'Phoenix' in info['data'] and 'exposed' in info['data']:
+            message = "Gas gauge exposed in Phoenix, AZ"
+            client.messages.create(
+                to=YOUR_PHONE_NUMBER,
+                from_=TWILIO_PHONE_NUMBER,
+                body=message)
+            break
+
+except shodan.APIError as e:
+    print('Error: {}'.format(e))

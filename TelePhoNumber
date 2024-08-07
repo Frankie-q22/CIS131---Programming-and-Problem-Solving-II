@@ -1,0 +1,57 @@
+#TelephoNumber generatr Fq
+def main():
+    endProgram = 'no' 
+    while endProgram != 'yes' and endProgram != 'Yes': 
+        Dictionary = {2:['a', 'b', 'c'], 3:['d', 'e', 'f'], 4:['g', 'h', 'i'], 5:['j', 'k', 'l'], 6:['m', 'n', 'o'], 7:['p', 'r', 's'], 8:['t', 'u', 'v'], 9:['w', 'x', 'y']} #creates dictionary
+        number = getnumber() 
+        combos = generatecombos(Dictionary, number) 
+        randomwords(number, combos) 
+        endProgram = input('Would you like to end the program? (yes/no): ') 
+        while endProgram != 'yes' and endProgram != 'no' and endProgram != 'Yes' and endProgram != 'No': 
+            endProgram = input('I\'m sorry, the answer you gave is invalid. Please enter yes or no: ') 
+
+
+def getnumber():
+    while True: 
+        try:
+            number = [int(i) for i in input('Please input a seven numbers, exclude 0 and 1: ')] 
+            if(len(number) == 7): 
+                if 0 in number or 1 in number: 
+                    print('Error: a "1" or a "0" was detected in the numbers entered') 
+                    continue
+                else:
+                    break 
+            else:
+                print('Error: the numbers entered did not reach the required length') 
+        except:
+            print('Oops, you seem to have entered a letter or symbol, please input numerical values') 
+    return number 
+ 
+    
+def generatecombos(Dictionary, number):
+    combos = []
+    for a in range(3):
+        for b in range(3):
+            for c in range(3):
+                for d in range(3):
+                    for e in range(3):
+                        for f in range (3):
+                            for g in range(3):
+                                combination = Dictionary[number[0]][a] + Dictionary[number[1]][b] + Dictionary[number[2]][c] + Dictionary[number[3]][d] + Dictionary[number[4]][e] + Dictionary[number[5]][f] + Dictionary[number[6]][g] + " "
+                                combos += [combination]
+    return combos
+
+
+def randomwords(number, combos):
+    file1 = open("TelephoNumberGen.txt", "a")
+    lineSize = 9 
+    header = "======================================================================="+ "\n" +" All Possible Combinations For: " +  str(number[0])+' ' + str(number[1])+' ' + str(number[2])+' ' + str(number[3])+' ' + str(number[4])+' ' + str(number[5])+' ' + str(number[6])+' '  + '\n' "=======================================================================\n"
+    
+    file1.write(header)
+    for i in range(0, len(combos), lineSize):
+        line = combos[i:i+lineSize] 
+        file1.writelines(line)
+        file1.write("\n")
+    file1.close()
+
+main()

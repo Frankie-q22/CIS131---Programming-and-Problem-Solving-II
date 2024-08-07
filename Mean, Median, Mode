@@ -1,0 +1,22 @@
+#mean
+#median
+#Mode
+#range
+
+#input
+NumberSet = input('Enter A Number Dataset: ')
+
+#split the list
+Data = NumberSet.split()
+#print list
+print("List: ", Data)
+# change dataset string into Integers
+for i in range(len(Data)):
+    Data[i] = int(Data(i))
+#Mode Calculation usinf frequncy
+from collections import Counter
+frequency = Counter(Data)
+Mode = [num for num, count in frequency.items() if count == max(frequency.values())]
+
+range = max(Data) - min(Data)
+mean = sum(Data)/len(Data)

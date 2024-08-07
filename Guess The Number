@@ -1,0 +1,17 @@
+
+import random
+def main():
+ def guess(x):
+    NumberToGuess = random.randint(1,x)
+    guess = 0
+    while guess!= NumberToGuess:
+        guess = int(input(f'Guess A Number Between 1 and {x}: '))
+        if guess < NumberToGuess:
+         print( guess, "Is Too Low Man, You Got To Think Higher")
+        elif guess > NumberToGuess:
+         print("WOAH," ,guess, "Is Way Too High, Go A Little Lower")
+    print("Finally!! You Guessed The Number, It Was" ,NumberToGuess)
+    
+# I Made It So You Can Select The Integer Range From 1 To Whatever Number You Want
+ guess(2)
+main()

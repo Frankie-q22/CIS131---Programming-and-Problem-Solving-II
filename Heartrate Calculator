@@ -1,0 +1,11 @@
+def main():
+ Bpm = 220
+ print('American Heart Association')
+ print('==========================')
+ age = int(input('How Old Are You?: '))
+ yourBpm = Bpm - age
+ Maxheartrate = yourBpm * 0.85
+ Minheartrate = yourBpm * 0.50
+ print('Max Heart Rate:', yourBpm)
+ print('Your Target Heart Rate Should Not Exceed', Maxheartrate , "Or Fall Below", Minheartrate)
+main()

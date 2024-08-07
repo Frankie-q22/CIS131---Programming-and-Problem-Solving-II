@@ -1,0 +1,68 @@
+import random
+import matplotlib.pyplot as plt
+
+random.seed("ABC")
+
+
+number = [random.randint(0,100) for _ in range(10)]
+
+
+def merge_sort(numberlist, left, right):
+    if left >= right:
+        return
+    
+    mid = (left + right) //2
+    
+    plt.bar(list(range(10)), numberlist)
+    plt.pause(0.01)
+    plt.clf()
+    
+    #splits in 2 categories
+    merge_sort(numberlist, left, mid)
+    merge_sort(numberlist, mid+1 , right)
+
+    plt.bar(list(range(10)), numberlist)
+    plt.pause(0.01)
+    plt.clf()
+    
+   #merges both results
+    merge(numberlist, left, right, mid)
+    
+    plt.bar(list(range(10)), numberlist)
+    plt.pause(0.01)
+    plt.clf()
+    
+    
+def merge(numberlist,left,right,mid):
+    left_section = numberlist[left:mid+1]
+    right_section = numberlist[mid+1:right+1]
+    
+    left_counter,right_counter = 0,0
+    sorted_counter = left
+    
+    while left_counter < len(left_section) and right_counter < len(right_section):
+        if left_section[left_counter] <= right_section[right_counter]:
+         numberlist[sorted_counter] = left_section[left_counter]
+         left_counter +=1
+        else:
+            numberlist[sorted_counter] = right_section[right_counter]
+            right_counter +=1
+            
+    while left_counter < len(left_section):
+        numberlist[sorted_counter] = left_section[left_counter]
+        left_counter += 1
+        sorted_counter +=1
+        
+    while right_counter < len(right_section):
+        numberlist[sorted_counter] = right_section[right_counter]
+        right_counter += 1
+        sorted_counter +=1
+        
+print("List of Numbers: ",number)
+print("List of Numbers sorted: ",sorted(number))
+merge_sort(number,0,len(number)-1)
+
+ 
+plt.bar(list(range(10)), number)
+plt.show()
+

@@ -1,0 +1,16 @@
+def main():
+    p = 1000
+    r = 7
+    n = 10,20,30
+    rr = r * 0.01
+    #10 years
+    amount10 = p * ((1 + rr) ** n[0])
+    #20 years
+    amount20 = p * ((1 + rr) ** n[1])
+    #30 years
+    amount30 = p * ((1 + rr) ** n[2])
+    print("Investment Renturn After 10 Years:", amount10)
+    print("Investment Return After 20 Years:", amount20)    
+    print("Investment Return After 30 Years:", amount30)
+main()
+

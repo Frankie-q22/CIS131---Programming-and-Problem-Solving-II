@@ -1,0 +1,21 @@
+def main():
+  GallonsUsed = float(input("How Many Gallons Were Used: "))
+  MilesDriven = float(input("How Many Miles Were Driven: "))
+  MilesPerGallon = MilesDriven/GallonsUsed
+  print("The Miles/Gallons For This Tank Was:", MilesPerGallon)
+  GallonsUsed1 = float(input("How Many Gallons Were Used: "))
+  MilesDriven1 = float(input("How Many Miles Were Driven: "))
+  MilesPerGallon1 = MilesDriven1/GallonsUsed1
+  print("The Miles/Gallons For This Tank Was:", MilesPerGallon1)
+  GallonsUsed2 = float(input("How Many Gallons Were Used: "))
+  MilesDriven2 = float(input("How Many Miles Were Driven: "))
+  MilesPerGallon2 = MilesDriven2/GallonsUsed2
+  print("The Miles/Gallons For This Tank Was:", MilesPerGallon2)
+ 
+  TotalGallons = GallonsUsed + GallonsUsed1 + GallonsUsed2 
+  TotalMiles = MilesDriven + MilesDriven1 + MilesDriven2 
+  TotalMPG = TotalMiles/TotalGallons
+  print("Overall Gallons Used: ", TotalGallons)
+  print("Overall Miles Driven: ", TotalMiles)
+  print("Overall Miles/Gallons Was:", TotalMPG)
+main()

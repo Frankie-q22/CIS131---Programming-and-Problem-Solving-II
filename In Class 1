@@ -1,0 +1,6 @@
+
+Grade = int(input("Grade: "))
+if Grade >= 90:
+    print("Congratulations! your grade of", Grade ,"earns you an A in this Course")
+if Grade <= 90:
+    print("Sorry, your grade was", Grade, "which is lower than a 90, YOU FAIL BRO!!")
